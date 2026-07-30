@@ -1,0 +1,3 @@
+(test
+ (name ocamlatlas_permutation_test)
+ (libraries ocamlatlas))
