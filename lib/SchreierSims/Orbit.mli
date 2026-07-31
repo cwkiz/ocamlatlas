@@ -1,4 +1,4 @@
-(** An orbit linked to its Schreier tree and transversal. *)
+(** An orbit linked to its Schreier tree *)
 
 type t
 
@@ -12,4 +12,5 @@ val mem : t -> int -> bool
 
 val parent : t -> int -> (int * Permutation.t) option
 val transversal : t -> int -> Permutation.t option
+val transversal_object : t -> Transversal.t
 val stabilizer_generators : t -> Permutation.t list

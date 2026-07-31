@@ -1,4 +1,4 @@
-(** A permutation group, represented by a degree and a generating set. *)
+(** it's a permutation group *)
 
 type t = { degree : int; generators : Permutation.t list }
 
