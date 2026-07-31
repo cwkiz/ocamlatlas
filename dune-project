@@ -9,16 +9,14 @@
 
 (authors "Demetrius <illegalbassmedicine@proton.me>")
 
-(maintainers "Maintainer Name <maintainer@example.com>")
+(maintainers "Demetrius <illegalbassmedicine@proton.me>")
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
-
 (package
  (name ocamlatlas)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Finite Group Representations utilities for OCaml.")
+ (description "It's a CAS for finite group representations in OCaml")
  (depends ocaml)
  (tags
   ("finitegroup" "algebra" "cas" "atlasoffinitegroups")))
