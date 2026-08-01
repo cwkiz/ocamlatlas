@@ -14,7 +14,10 @@ val generators : level -> Permutation.t list
 val strong_generators : t -> StrongGenerators.t
 val order : t -> int
 
-(** [sift b g]: [None] when [g] belongs to the group represented by
-    [b].  or it returns residue post sift *)
-val sift : t -> Permutation.t -> Permutation.t option
+(** [sift b g] is [None] when [g] belongs to the group represented by [b].
+    Otherwise it returns [(i, r)], where [i] is the zero-based first level
+    whose orbit does not contain the current image, and [r] is the residue
+    before sifting at that level.  A failure at [List.length (levels b)]
+    denotes a non-identity residue after every level. *)
+val sift : t -> Permutation.t -> (int * Permutation.t) option
 val contains : t -> Permutation.t -> bool

@@ -55,16 +55,19 @@ let sift bsgs permutation =
   if Array.length permutation <> bsgs.degree then
     invalid_arg "Bsgs.sift: permutation has the wrong degree";
   let residue = ref permutation in
-  let failed = ref false in
-  List.iter (fun level ->
-    if not !failed then begin
+  let failure = ref None in
+  List.iteri (fun level_index level ->
+    if Option.is_none !failure then begin
       let image = (!residue).(level.base_point) in
       match Orbit.transversal level.orbit image with
-      | None -> failed := true
+      | None -> failure := Some (level_index, !residue)
       | Some representative ->
           residue := Permutation.comp (Permutation.inv representative) !residue
     end) bsgs.levels;
-  if !failed || not (Permutation.equal !residue (Permutation.id bsgs.degree))
-  then Some !residue else None
+  match !failure with
+  | Some _ as failure -> failure
+  | None ->
+      if Permutation.equal !residue (Permutation.id bsgs.degree) then None
+      else Some (List.length bsgs.levels, !residue)
 
 let contains bsgs permutation = Option.is_none (sift bsgs permutation)

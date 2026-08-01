@@ -11,3 +11,4 @@ val validate : t -> unit
 val cycles : t -> int list list
 val comp : t -> t -> t
 val inv : t -> t
+val to_string : t -> string

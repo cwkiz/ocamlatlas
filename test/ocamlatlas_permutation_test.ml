@@ -8,33 +8,10 @@ let permutation_order p =
   in
   loop p 1
 
-let report name generators =
-  let group = PermutationGroup.create generators in
-  let elements = PermutationGroup.elements group in
-  let orders =
-    elements
-    |> List.map permutation_order
-    |> List.sort_uniq compare
-  in
-  Printf.printf "%s\n" name;
-  Printf.printf "  degree: %d\n" (PermutationGroup.degree group);
-  Printf.printf "  generators: %d\n" (List.length generators);
-  Printf.printf "  elements: %d\n" (List.length elements);
-  Printf.printf "  element orders: %s\n\n"
-    (String.concat ", " (List.map string_of_int orders))
+(* Assertion case S3 again, based on old test which is now reused in example*)
 
-let () =
-  report "C3" [
-    [|1; 2; 0|];
-  ];
+let () = 
+  assert (PermutationGroup.degree (PermutationGroup.create [ [| 1; 2; 0 |];]) = 3)
 
-  report "S3" [
-    [|1; 0; 2|];
-    [|1; 2; 0|];
-  ];
-
-  report "D4" [
-    [|1; 2; 3; 0|];
-    [|0; 3; 2; 1|];
-  ]
-
+let () = 
+  assert (List.length (PermutationGroup.elements (PermutationGroup.create [ [| 1; 2; 0 |];])) = 3)

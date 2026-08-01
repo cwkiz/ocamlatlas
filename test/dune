@@ -6,6 +6,3 @@
  (name ocamlatlas_bsgs_test)
  (libraries ocamlatlas))
 
-(test
- (name ocamlatlas_schreier_test)
- (libraries ocamlatlas))

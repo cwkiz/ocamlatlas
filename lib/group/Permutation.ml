@@ -56,6 +56,16 @@ let comp (p : t) (q : t) : t =
     invalid_arg "Permutation.comp: permutations must have the same degree";
   Array.init (Array.length p) (fun i -> p.(q.(i)))
 
+let to_string (p : t) : string =
+  let cycles = cycles p in
+  let cycle_strings =
+    List.map
+      (fun cycle ->
+        let elements = List.map string_of_int cycle in
+        "(" ^ String.concat " " elements ^ ")")
+      cycles
+  in
+  String.concat "" cycle_strings
 
  let inv (p : t) : t =
   validate p;
