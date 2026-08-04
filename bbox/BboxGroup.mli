@@ -2,16 +2,22 @@
 original impl: https://brauer.maths.qmul.ac.uk/Atlas/info/interpret.html *)
 
 module type BLACK_BOX = sig
-  type group
+  type t
   type element
 
-  val random : group -> element
+  val one        : t -> element
+  val random     : t -> element
 
-  val mul : group -> element -> element -> element
+  val equal      : t -> element -> element -> bool
 
-  val inv : group -> element -> element
+  val multiply   : t -> element -> element -> element
+  val inverse    : t -> element -> element
 
-  val order : group -> element -> int
+  val power      : t -> int -> element -> element
+  val conjugate  : t -> element -> by:element -> element
+  val commutator : t -> element -> element -> element
 
-  val equal : group -> element -> element -> bool
+  val order      : t -> element -> int
+  val has_order  : t -> element -> int -> bool
+
 end
